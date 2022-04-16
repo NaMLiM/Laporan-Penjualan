@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
                             actions: [
                               TextButton(
                                   onPressed: () => Navigator.pop(context, "Ok"),
-                                  child: Text("Ok"))
+                                  child: const Text("Ok"))
                             ],
                           ));
                 })
