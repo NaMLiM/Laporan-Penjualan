@@ -1,17 +1,17 @@
 import 'package:laporan_penjualan/system/db/db_connect.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DataRepo{
+class DataRepo {
   late DatabaseConnection _dbConnect;
 
-  dbRepo(){
+  DataRepo() {
     _dbConnect = DatabaseConnection();
   }
 
   static late Database _database;
 
-  Future<Database> get database async{
-    if(_database!=null) return _database;
+  Future<Database> get database async {
+    if (_database != null) return _database;
     _database = await _dbConnect.setDatabase();
     return _database;
   }
@@ -20,4 +20,9 @@ class DataRepo{
     var connection = await database;
     return await connection.insert(table, data);
   }
+
+  /* getData(table, data) async {
+    var connection = await database;
+    return await connection.
+  } */
 }
