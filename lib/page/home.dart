@@ -38,17 +38,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
+        appBar: AppBar(title: Text(widget.title)),
         drawer: Drawer(
           child: ListView(padding: EdgeInsets.zero, children: [
             const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Text('Laporan Penjualan'),
             ),
+            ListTile(
+                leading: const Icon(Icons.upload_rounded),
+                title: const Text('Export'),
+                onTap: () {}),
             ListTile(
                 leading: const Icon(Icons.warning_amber_rounded),
                 title: const Text('Tentang'),
@@ -56,88 +56,79 @@ class _HomeState extends State<Home> {
                   showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                            title: Text(_appName),
-                            content: Text("Versi " + _versionName),
-                            actions: [
-                              TextButton(
-                                  onPressed: () => Navigator.pop(context, "Ok"),
-                                  child: const Text("Ok"))
-                            ],
-                          ));
+                              title: Text(_appName),
+                              content: Text("Versi " + _versionName),
+                              actions: [
+                                TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(context, "Ok"),
+                                    child: const Text("Ok"))
+                              ]));
                 })
           ]),
         ),
         body: Center(
-          child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Card(
-                          child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              onTap: () {},
-                              child: SizedBox(
-                                  width: 170,
-                                  height: 100,
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        const Icon(Icons.arrow_downward,
-                                            color: Colors.green, size: 50),
-                                        Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text("This Month"),
-                                              Text("RP. 30.000")
-                                            ])
-                                      ])))),
-                      Card(
-                          child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              onTap: () {},
-                              child: SizedBox(
-                                  width: 170,
-                                  height: 100,
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        const Icon(Icons.arrow_upward,
-                                            color: Colors.red, size: 50),
-                                        Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text("This Month"),
-                                              Text("RP. 30.000")
-                                            ])
-                                      ]))))
-                    ],
-                  ),
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                child: Column(children: [
+                  Row(children: [
+                    Card(
+                        child: InkWell(
+                            splashColor: Colors.blue.withAlpha(30),
+                            onTap: () {},
+                            child: SizedBox(
+                                width: 170,
+                                height: 100,
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      const Icon(Icons.arrow_downward,
+                                          color: Colors.green, size: 50),
+                                      Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text("This Month"),
+                                            Text("RP. 30.000")
+                                          ])
+                                    ])))),
+                    Card(
+                        child: InkWell(
+                            splashColor: Colors.blue.withAlpha(30),
+                            onTap: () {},
+                            child: SizedBox(
+                                width: 170,
+                                height: 100,
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      const Icon(Icons.arrow_upward,
+                                          color: Colors.red, size: 50),
+                                      Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text("This Month"),
+                                            Text("RP. 30.000")
+                                          ])
+                                    ]))))
+                  ]),
                   Expanded(
-                      child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      Card(
+                      child: ListView(shrinkWrap: true, children: [
+                    Card(
                         child: ListTile(
-                          title: Text("Uang Masuk"),
-                          subtitle: Text("26-05-2001"),
-                          leading: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: Icon(Icons.arrow_downward,
-                                  color: Colors.green)),
-                          trailing: Text("RP. 30.000"),
-                        ),
-                      )
-                    ],
-                  ))
-                ],
-              )),
-        ),
+                            title: Text("Uang Masuk"),
+                            subtitle: Text("26-05-2001"),
+                            leading: CircleAvatar(
+                                backgroundColor: Colors.white,
+                                child: Icon(Icons.arrow_downward,
+                                    color: Colors.green)),
+                            trailing: Text("RP. 30.000")))
+                  ]))
+                ]))),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           child: const Icon(Icons.add),
