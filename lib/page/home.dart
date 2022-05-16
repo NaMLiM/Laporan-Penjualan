@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
                 leading: const Icon(Icons.upload_rounded),
-                title: const Text('Export'),
+                title: const Text('Export to CSV'),
                 onTap: () {}),
             ListTile(
                 leading: const Icon(Icons.warning_amber_rounded),
@@ -100,7 +100,6 @@ class _HomeState extends State<Home> {
                                 splashColor: Colors.blue.withAlpha(30),
                                 onTap: () {},
                                 child: SizedBox(
-                                    width: 170,
                                     height: 100,
                                     child: Row(
                                         mainAxisAlignment:
@@ -120,14 +119,17 @@ class _HomeState extends State<Home> {
                   Expanded(
                       child: ListView(shrinkWrap: true, children: [
                     Card(
-                        child: ListTile(
-                            title: Text("Uang Masuk"),
-                            subtitle: Text("26-05-2001"),
-                            leading: CircleAvatar(
-                                backgroundColor: Colors.white,
-                                child: Icon(Icons.arrow_downward,
-                                    color: Colors.green)),
-                            trailing: Text("RP. 30.000")))
+                        child: InkWell(
+                            splashColor: Colors.blue.withAlpha(30),
+                            onTap: () {},
+                            child: ListTile(
+                                title: Text("Uang Masuk"),
+                                subtitle: Text("26-05-2001"),
+                                leading: CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    child: Icon(Icons.arrow_downward,
+                                        color: Colors.green)),
+                                trailing: Text("RP. 30.000"))))
                   ]))
                 ]))),
         floatingActionButton: FloatingActionButton(
