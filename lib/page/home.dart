@@ -73,48 +73,49 @@ class _HomeState extends State<Home> {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: Column(children: [
                   Row(children: [
-                    Card(
-                        child: InkWell(
-                            splashColor: Colors.blue.withAlpha(30),
-                            onTap: () {},
-                            child: SizedBox(
-                                width: 170,
-                                height: 100,
-                                child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      const Icon(Icons.arrow_downward,
-                                          color: Colors.green, size: 50),
-                                      Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text("This Month"),
-                                            Text("RP. 30.000")
-                                          ])
-                                    ])))),
-                    Card(
-                        child: InkWell(
-                            splashColor: Colors.blue.withAlpha(30),
-                            onTap: () {},
-                            child: SizedBox(
-                                width: 170,
-                                height: 100,
-                                child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      const Icon(Icons.arrow_upward,
-                                          color: Colors.red, size: 50),
-                                      Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text("This Month"),
-                                            Text("RP. 30.000")
-                                          ])
-                                    ]))))
+                    Expanded(
+                        child: Card(
+                            child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                onTap: () {},
+                                child: SizedBox(
+                                    height: 100,
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          const Icon(Icons.arrow_downward,
+                                              color: Colors.green, size: 50),
+                                          Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text("This Month"),
+                                                Text("RP. 30.000")
+                                              ])
+                                        ]))))),
+                    Expanded(
+                        child: Card(
+                            child: InkWell(
+                                splashColor: Colors.blue.withAlpha(30),
+                                onTap: () {},
+                                child: SizedBox(
+                                    width: 170,
+                                    height: 100,
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          const Icon(Icons.arrow_upward,
+                                              color: Colors.red, size: 50),
+                                          Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text("This Month"),
+                                                Text("RP. 30.000")
+                                              ])
+                                        ])))))
                   ]),
                   Expanded(
                       child: ListView(shrinkWrap: true, children: [
