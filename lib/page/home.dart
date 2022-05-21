@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laporan_penjualan/widget/addLaporanWidget.dart';
-import 'package:laporan_penjualan/widget/tentangWidget.dart';
+import 'package:laporan_penjualan/widget/add_laporan_widget.dart';
+import 'package:laporan_penjualan/widget/tentang_widget.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
                   showDialog<String>(
                       context: context,
                       builder: (BuildContext context) {
-                        return TentangWidget();
+                        return const TentangWidget();
                       });
                 })
           ]),
@@ -111,7 +111,7 @@ class _HomeState extends State<Home> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return AddLaporanWidget();
+                  return const AddLaporanWidget();
                 });
           },
           child: const Icon(Icons.add),
