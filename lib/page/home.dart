@@ -37,7 +37,8 @@ class _HomeState extends State<Home> {
                       context: context,
                       builder: (BuildContext context) {
                         return TentangWidget();
-                });})
+                      });
+                })
           ]),
         ),
         body: Center(
