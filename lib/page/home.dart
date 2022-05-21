@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laporan_penjualan/widget/addLaporanWidget.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class Home extends StatefulWidget {
@@ -9,11 +10,14 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+enum addToggle { masuk, keluar, empty }
+
 class _HomeState extends State<Home> {
   String _appName = "";
   String _versionName = "";
   String _versionCode = "";
   String _packageName = "";
+  addToggle isSelected = addToggle.empty;
 
   @override
   void initState() {
@@ -61,7 +65,7 @@ class _HomeState extends State<Home> {
                               actions: [
                                 TextButton(
                                     onPressed: () =>
-                                        Navigator.pop(context, "Ok"),
+                                        Navigator.pop(context),
                                     child: const Text("Ok"))
                               ]));
                 })
@@ -126,14 +130,20 @@ class _HomeState extends State<Home> {
                                 title: Text("Uang Masuk"),
                                 subtitle: Text("26-05-2001"),
                                 leading: CircleAvatar(
-                                    backgroundColor: Colors.white,
+                                    backgroundColor: Colors.lightBlue,
                                     child: Icon(Icons.arrow_downward,
-                                        color: Colors.green)),
+                                        color: Colors.greenAccent)),
                                 trailing: Text("RP. 30.000"))))
                   ]))
                 ]))),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AddLaporanWidget();
+                });
+          },
           child: const Icon(Icons.add),
         ));
   }
