@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:laporan_penjualan/widget/addLaporanWidget.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:laporan_penjualan/widget/tentangWidget.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -13,31 +13,7 @@ class Home extends StatefulWidget {
 enum addToggle { masuk, keluar, empty }
 
 class _HomeState extends State<Home> {
-  String _appName = "";
-  String _versionName = "";
-  String _versionCode = "";
-  String _packageName = "";
   addToggle isSelected = addToggle.empty;
-
-  @override
-  void initState() {
-    _init();
-    super.initState();
-  }
-
-  void _init() async {
-    final _packageInfo = await PackageInfo.fromPlatform();
-
-    setState(() {
-      _appName = _packageInfo.appName; // Ambil Data Nama Aplikasi
-
-      _versionName = _packageInfo.version; // Ambil Data Nama Versi
-
-      _versionCode = _packageInfo.buildNumber; // Ambil Data Kode Versi
-
-      _packageName = _packageInfo.packageName; // Ambil Data Package Name
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,16 +35,9 @@ class _HomeState extends State<Home> {
                 onTap: () {
                   showDialog<String>(
                       context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                              title: Text(_appName),
-                              content: Text("Versi " + _versionName),
-                              actions: [
-                                TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context),
-                                    child: const Text("Ok"))
-                              ]));
-                })
+                      builder: (BuildContext context) {
+                        return TentangWidget();
+                });})
           ]),
         ),
         body: Center(
