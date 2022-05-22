@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laporan_penjualan/page/home.dart';
+import 'package:laporan_penjualan/widgets/home_widget.dart';
 
 void main() {
   runApp(const LaporanPenjualan());
@@ -7,6 +7,7 @@ void main() {
 
 class LaporanPenjualan extends StatelessWidget {
   const LaporanPenjualan({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
