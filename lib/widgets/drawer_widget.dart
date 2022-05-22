@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laporan_penjualan/widgets/tentang_widget.dart';
+import 'tentang_widget.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);

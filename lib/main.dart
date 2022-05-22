@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laporan_penjualan/widgets/home_widget.dart';
+
+import '/widgets/home_widget.dart';
 
 void main() {
   runApp(const LaporanPenjualan());
