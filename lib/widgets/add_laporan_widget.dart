@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:laporan_penjualan/services/data_handler.dart';
+import 'package:intl/intl.dart';
+import 'package:laporan_penjualan/services/db_handler.dart';
 
 class AddLaporanWidget extends StatefulWidget {
   const AddLaporanWidget({Key? key}) : super(key: key);
@@ -12,8 +15,9 @@ class AddLaporanWidget extends StatefulWidget {
 enum addToggle { masuk, keluar, empty }
 
 class _AddLaporanWidgetState extends State<AddLaporanWidget> {
-  addToggle isSelected = addToggle.empty;
+  addToggle? isSelected = addToggle.empty;
   final GlobalKey<FormState> _form = GlobalKey<FormState>();
+  var textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,7 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
             key: _form,
             child: Column(mainAxisSize: MainAxisSize.min, children: [
               TextFormField(
+                  controller: textController,
                   autofocus: true,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
@@ -35,7 +40,6 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
                         onTap: () {
                           setState(() {
                             isSelected = addToggle.masuk;
-                            print(isSelected);
                           });
                         },
                         child: Card(
@@ -59,14 +63,13 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
                                       Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
-                                          children: const [Text("Keluar")])
+                                          children: const [Text("Masuk")])
                                     ]))))),
                 Expanded(
                     child: GestureDetector(
                         onTap: () {
                           setState(() {
                             isSelected = addToggle.keluar;
-                            print(isSelected);
                           });
                         },
                         child: Card(
@@ -96,7 +99,29 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
               ])
             ])),
         actions: <Widget>[
-          TextButton(onPressed: () {}, child: const Text("Submit"))
+          TextButton(
+              onPressed: () async {
+                if (isSelected == null ||
+                    isSelected == addToggle.empty ||
+                    textController.text.isEmpty) {
+                  var snackBar = const SnackBar(
+                      content: Text("Tidak boleh ada data kosong!"));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                } else {
+                  var status = isSelected.toString();
+                  isSelected == addToggle.masuk
+                      ? status = "Uang Masuk"
+                      : status = "Uang Keluar";
+                  DataHandler _data = DataHandler(
+                      nominal: int.parse(textController.text),
+                      date:
+                          DateFormat("y-MM-dd HH:mm:ss").format(DateTime.now()),
+                      status: status);
+                  List<DataHandler> _dataHandler = [_data];
+                  DatabaseHandler().insertData(_dataHandler);
+                }
+              },
+              child: const Text("Submit"))
         ]);
   }
 }
