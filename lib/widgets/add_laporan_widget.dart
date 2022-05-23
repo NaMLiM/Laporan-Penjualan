@@ -13,10 +13,10 @@ class AddLaporanWidget extends StatefulWidget {
   }
 }
 
-enum addToggle { masuk, keluar, empty }
+enum AddToggle { masuk, keluar, empty }
 
 class _AddLaporanWidgetState extends State<AddLaporanWidget> {
-  addToggle? isSelected = addToggle.empty;
+  AddToggle? isSelected = AddToggle.empty;
   final GlobalKey<FormState> _form = GlobalKey<FormState>();
   var textController = TextEditingController();
 
@@ -40,11 +40,11 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
                     child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            isSelected = addToggle.masuk;
+                            isSelected = AddToggle.masuk;
                           });
                         },
                         child: Card(
-                            color: isSelected == addToggle.masuk
+                            color: isSelected == AddToggle.masuk
                                 ? Colors.lightBlueAccent
                                 : Colors.white,
                             child: SizedBox(
@@ -70,11 +70,11 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
                     child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            isSelected = addToggle.keluar;
+                            isSelected = AddToggle.keluar;
                           });
                         },
                         child: Card(
-                            color: isSelected == addToggle.keluar
+                            color: isSelected == AddToggle.keluar
                                 ? Colors.lightBlueAccent
                                 : Colors.white,
                             child: SizedBox(
@@ -103,23 +103,23 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
           TextButton(
               onPressed: () async {
                 if (isSelected == null ||
-                    isSelected == addToggle.empty ||
+                    isSelected == AddToggle.empty ||
                     textController.text.isEmpty) {
                   var snackBar = const SnackBar(
                       content: Text("Tidak boleh ada data kosong!"));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 } else {
                   var status = isSelected.toString();
-                  isSelected == addToggle.masuk
+                  isSelected == AddToggle.masuk
                       ? status = "Uang Masuk"
                       : status = "Uang Keluar";
-                  Report _data = Report(
+                  Report data = Report(
                       nominal: int.parse(textController.text),
                       date:
                           DateFormat("y-MM-dd HH:mm:ss").format(DateTime.now()),
                       status: status);
-                  List<Report> _dataHandler = [_data];
-                  DatabaseHandler().insertData(_dataHandler);
+                  List<Report> dataHandler = [data];
+                  DatabaseHandler().insertData(dataHandler);
                   Navigator.pop(context);
                 }
               },
