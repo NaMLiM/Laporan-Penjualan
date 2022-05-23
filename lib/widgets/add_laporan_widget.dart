@@ -120,6 +120,7 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
                       status: status);
                   List<Report> _dataHandler = [_data];
                   DatabaseHandler().insertData(_dataHandler);
+                  Navigator.pop(context);
                 }
               },
               child: const Text("Submit"))
