@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../services/data_handler.dart';
+import '../models/report_model.dart';
 import '../services/db_handler.dart';
 import 'add_laporan_widget.dart';
 import 'drawer_widget.dart';
@@ -97,7 +97,7 @@ class _HomeState extends State<Home> {
                       child: FutureBuilder(
                           future: handler.retrieveData(),
                           builder: (BuildContext context,
-                              AsyncSnapshot<List<DataHandler>> snapshot) {
+                              AsyncSnapshot<List<Report>> snapshot) {
                             if (snapshot.hasData) {
                               return ListView.builder(
                                   itemCount: snapshot.data?.length,

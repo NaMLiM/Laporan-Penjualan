@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../services/data_handler.dart';
+import '../models/report_model.dart';
 import '../services/db_handler.dart';
 
 class AddLaporanWidget extends StatefulWidget {
@@ -113,12 +113,12 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
                   isSelected == addToggle.masuk
                       ? status = "Uang Masuk"
                       : status = "Uang Keluar";
-                  DataHandler _data = DataHandler(
+                  Report _data = Report(
                       nominal: int.parse(textController.text),
                       date:
                           DateFormat("y-MM-dd HH:mm:ss").format(DateTime.now()),
                       status: status);
-                  List<DataHandler> _dataHandler = [_data];
+                  List<Report> _dataHandler = [_data];
                   DatabaseHandler().insertData(_dataHandler);
                 }
               },

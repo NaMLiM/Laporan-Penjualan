@@ -2,7 +2,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-import 'data_handler.dart';
+import '../models/report_model.dart';
 
 class DatabaseHandler {
   setDatabase() async {
@@ -18,7 +18,7 @@ class DatabaseHandler {
         "CREATE TABLE report(id INTEGER PRIMARY KEY, date TEXT, nominal INTEGER, status TEXT)");
   }
 
-  Future<int> insertData(List<DataHandler> data) async {
+  Future<int> insertData(List<Report> data) async {
     int result = 0;
     final Database db = await setDatabase();
     for (var data in data) {
@@ -27,10 +27,10 @@ class DatabaseHandler {
     return result;
   }
 
-  Future<List<DataHandler>> retrieveData() async {
+  Future<List<Report>> retrieveData() async {
     final Database db = await setDatabase();
     final List<Map<String, Object?>> queryResult = await db.query('report');
-    return queryResult.map((e) => DataHandler.fromMap(e)).toList();
+    return queryResult.map((e) => Report.fromMap(e)).toList();
   }
 
   Future<void> deleteData(int id) async {
