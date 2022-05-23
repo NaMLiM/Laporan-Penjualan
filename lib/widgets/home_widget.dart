@@ -142,7 +142,7 @@ class _HomeState extends State<Home> {
                 context: context,
                 builder: (BuildContext context) {
                   return const AddLaporanWidget();
-                });
+                }).then((value) => setState(() {}));
           },
           child: const Icon(Icons.add),
         ));
