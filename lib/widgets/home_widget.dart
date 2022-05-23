@@ -90,7 +90,9 @@ class _HomeState extends State<Home> {
                           children: [
                             const Text("Laporan Bulan Ini"),
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  setState(() {});
+                                },
                                 icon: const Icon(Icons.refresh))
                           ])),
                   Expanded(
