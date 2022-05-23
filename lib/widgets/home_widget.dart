@@ -13,8 +13,6 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-enum addToggle { masuk, keluar, empty }
-
 class _HomeState extends State<Home> {
   late DatabaseHandler handler;
 
@@ -26,8 +24,6 @@ class _HomeState extends State<Home> {
       setState(() {});
     });
   }
-
-  addToggle isSelected = addToggle.empty;
 
   @override
   Widget build(BuildContext context) {
