@@ -32,7 +32,7 @@ class _TentangWidget extends State<TentangWidget> {
   Widget build(BuildContext context) {
     return AlertDialog(
         title: Text(_appName),
-        content: Text("Versi " + _appVer),
+        content: Text("Versi $_appVer"),
         actions: [
           TextButton(
               onPressed: () => Navigator.pop(context), child: const Text("Ok"))

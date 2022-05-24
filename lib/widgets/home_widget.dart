@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(widget.title)),
-        drawer: const DrawerWidget(),
+        drawer: DrawerWidget(),
         body: Center(
             child: Column(children: [
           Container(

@@ -1,6 +1,12 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sqflite/sqflite.dart';
+
+import 'package:sqflite_common_porter/utils/csv_utils.dart';
 
 import '../models/report_model.dart';
 
@@ -46,5 +52,23 @@ class DatabaseHandler {
       where: "id = ?",
       whereArgs: [id],
     );
+  }
+
+  export() async {
+    Database db = await setDatabase();
+    var export = await db.query('report');
+    var result = mapListToCsv(export);
+    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+    if (selectedDirectory == null) return;
+    var storage = await Permission.storage.status;
+    var external = await Permission.manageExternalStorage.status;
+    if (storage.isDenied || storage.isLimited || storage.isRestricted) {
+      await Permission.storage.request();
+    }
+    if (external.isDenied || external.isLimited || external.isRestricted) {
+      await Permission.manageExternalStorage.request();
+    }
+    final File file = File("$selectedDirectory/Laporan.csv");
+    await file.writeAsString(result!);
   }
 }

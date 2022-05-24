@@ -38,6 +38,13 @@ dependencies:
   sqflite: ^2.0.2+1
   path_provider: ^2.0.9
   intl: ^0.17.0
+  sqflite_common_porter:
+    git:
+      url: https://github.com/tekartik/sqflite_more
+      ref: dart2_3
+      path: sqflite_common_porter
+  permission_handler: ^9.2.0
+  file_picker: ^4.5.1
 
 dev_dependencies:
   flutter_test:

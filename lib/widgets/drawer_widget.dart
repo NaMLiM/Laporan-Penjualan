@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'tentang_widget.dart';
+import '../services/db_handler.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({Key? key}) : super(key: key);
+  DrawerWidget({Key? key}) : super(key: key);
+  final DatabaseHandler db = DatabaseHandler();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,9 @@ class DrawerWidget extends StatelessWidget {
         ListTile(
             leading: const Icon(Icons.upload_rounded),
             title: const Text('Export to CSV'),
-            onTap: () {}),
+            onTap: () {
+              db.export();
+            }),
         ListTile(
             leading: const Icon(Icons.warning_amber_rounded),
             title: const Text('Tentang'),
