@@ -33,7 +33,13 @@ class DatabaseHandler {
     return queryResult.map((e) => Report.fromMap(e)).toList();
   }
 
-  Future<void> deleteData(int id) async {
+  Future<int> updateData(Report report) async {
+    final Database db = await setDatabase();
+    return await db.update("report", report.toMap(),
+        where: "id = ?", whereArgs: [report.id]);
+  }
+
+  Future<void> deleteData(int? id) async {
     final db = await setDatabase();
     await db.delete(
       'report',
