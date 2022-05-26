@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laporan_penjualan/models/monthly_model.dart';
+import 'package:laporan_penjualan/widgets/detail_widget.dart';
 import 'package:laporan_penjualan/widgets/update_laporan_widget.dart';
 
 import '../models/report_model.dart';
@@ -38,8 +40,8 @@ class _HomeState extends State<Home> {
             decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
                 borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(25),
-                    bottomRight: Radius.circular(25))),
+                    bottomLeft: Radius.elliptical(40, 20),
+                    bottomRight: Radius.elliptical(40, 20))),
             child: Row(children: [
               Expanded(
                   child: Card(
@@ -58,8 +60,20 @@ class _HomeState extends State<Home> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Text("This Month"),
-                                          Text("RP. 30.000")
+                                          const Text("This Month"),
+                                          FutureBuilder(
+                                              future: handler.masukMonthly(),
+                                              builder: (BuildContext context,
+                                                  AsyncSnapshot<
+                                                          List<MasukMonthly>>
+                                                      snapshot) {
+                                                if (snapshot.data!.isNotEmpty) {
+                                                  return Text(
+                                                      "Rp.${snapshot.data!.first.nominal}");
+                                                } else {
+                                                  return const Text("No Data");
+                                                }
+                                              })
                                         ])
                                   ]))))),
               Expanded(
@@ -79,8 +93,20 @@ class _HomeState extends State<Home> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          Text("This Month"),
-                                          Text("RP. 30.000")
+                                          const Text("This Month"),
+                                          FutureBuilder(
+                                              future: handler.keluarMonthly(),
+                                              builder: (BuildContext context,
+                                                  AsyncSnapshot<
+                                                          List<KeluarMonthly>>
+                                                      snapshot) {
+                                                if (snapshot.data!.isNotEmpty) {
+                                                  return Text(
+                                                      "Rp.${snapshot.data!.first.nominal}");
+                                                } else {
+                                                  return const Text("No Data");
+                                                }
+                                              })
                                         ])
                                   ])))))
             ]),
