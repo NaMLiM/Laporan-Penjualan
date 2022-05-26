@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:laporan_penjualan/models/monthly_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -52,6 +54,26 @@ class DatabaseHandler {
       where: "id = ?",
       whereArgs: [id],
     );
+  }
+
+  Future<List<MasukMonthly>> masukMonthly() async {
+    final Database db = await setDatabase();
+    final time = DateTime.now();
+    final month = DateFormat("MM").format(time);
+    final year = time.year;
+    final List<Map<String, Object?>> result = await db.rawQuery(
+        "SELECT SUM(nominal) as nominal FROM report WHERE strftime('%Y', date) = '$year' AND  strftime('%m', date) = '$month' AND status = 'Uang Masuk' GROUP BY strftime('%m', date)");
+    return result.map((e) => MasukMonthly.fromMap(e)).toList();
+  }
+
+  Future<List<KeluarMonthly>> keluarMonthly() async {
+    final Database db = await setDatabase();
+    final time = DateTime.now();
+    final month = DateFormat("MM").format(time);
+    final year = time.year;
+    final List<Map<String, Object?>> result = await db.rawQuery(
+        "SELECT SUM(nominal) as nominal FROM report WHERE strftime('%Y', date) = '$year' AND  strftime('%m', date) = '$month' AND status = 'Uang Keluar' GROUP BY strftime('%m', date)");
+    return result.map((e) => KeluarMonthly.fromMap(e)).toList();
   }
 
   export() async {
