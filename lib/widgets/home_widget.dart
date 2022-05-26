@@ -18,13 +18,45 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late DatabaseHandler handler;
+  bool loading = true;
+
+  void _loading() {
+    showDialog(
+        barrierColor: Colors.black,
+        barrierDismissible: false,
+        context: context,
+        builder: (_) {
+          return Dialog(
+            backgroundColor: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  CircularProgressIndicator(),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Text('Loading...')
+                ],
+              ),
+            ),
+          );
+        });
+    Future.delayed(const Duration(seconds: 1), () {
+      Navigator.pop(context);
+      loading = false; //pop dialog
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     handler = DatabaseHandler();
     handler.setDatabase().whenComplete(() async {
-      setState(() {});
+      setState(() {
+        _loading();
+      });
     });
   }
 
@@ -140,6 +172,15 @@ class _HomeState extends State<Home> {
                           return Card(
                               child: InkWell(
                                   splashColor: Colors.blue.withAlpha(30),
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        DialogRoute(
+                                            context: context,
+                                            builder: (context) => DetailWidget(
+                                                snapshot:
+                                                    snapshot.data![index])));
+                                  },
                                   onLongPress: () {
                                     Navigator.push(
                                             context,
