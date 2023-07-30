@@ -26,13 +26,13 @@ class _HomeState extends State<Home> {
         barrierDismissible: false,
         context: context,
         builder: (_) {
-          return Dialog(
+          return const Dialog(
             backgroundColor: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.symmetric(vertical: 20),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   CircularProgressIndicator(),
                   SizedBox(
                     height: 15,

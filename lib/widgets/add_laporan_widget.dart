@@ -61,10 +61,10 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
                                           child: const Icon(
                                               Icons.arrow_downward,
                                               color: Colors.greenAccent)),
-                                      Column(
+                                      const Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
-                                          children: const [Text("Masuk")])
+                                          children: [Text("Masuk")])
                                     ]))))),
                 Expanded(
                     child: GestureDetector(
@@ -90,10 +90,10 @@ class _AddLaporanWidgetState extends State<AddLaporanWidget> {
                                                   BorderRadius.circular(50.0)),
                                           child: const Icon(Icons.arrow_upward,
                                               color: Colors.redAccent)),
-                                      Column(
+                                      const Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
-                                          children: const [
+                                          children: [
                                             Text("Keluar"),
                                           ])
                                     ]))))),
